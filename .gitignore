@@ -50,6 +50,7 @@ coverage.xml
 .hypothesis/
 .pytest_cache/
 cover/
+artifacts/
 
 # Translations
 *.mo
@@ -140,6 +141,7 @@ celerybeat.pid
 mnesia/
 rabbitmq/
 rabbitmq-data/
+    streamlit run app.py
 
 # ActiveMQ
 activemq-data/
