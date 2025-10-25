@@ -1,5 +1,5 @@
 # TECH CHALLENGE — FASE 1  
-**Código:** #7IADTF1  
+
 
 ---
 
