@@ -8,5 +8,5 @@
 | Modelagem com ≥ 2 técnicas | ✅|
 | Treinamento e avaliação | ✅|
 | Interpretação e discussão |✅|
-| Entrega no GitHub (PDF, código, Docker, README) | ☐ |
+| Entrega no GitHub (PDF, código, README) | ✅| |
 | Vídeo demonstrativo (YouTube/Vimeo) | ☐ |
