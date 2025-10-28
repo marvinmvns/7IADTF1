@@ -4,9 +4,6 @@ import pandas as pd
 import pickle
 import subprocess
 import sys
-from sklearn.model_selection import train_test_split
-from sklearn.preprocessing import StandardScaler, LabelEncoder
-from sklearn.ensemble import RandomForestClassifier
 
 # Configuração da página
 st.set_page_config(page_title="Triagem Interativa - Risco Cardíaco", layout="wide")
@@ -63,6 +60,12 @@ model, scaler, label_encoders, feature_names = load_artifacts()
 # --- FUNÇÃO DE PREDIÇÃO ---
 def predict_heart_attack_risk(patient_data, model, scaler, label_encoders, feature_names):
     patient_df = pd.DataFrame([patient_data])
+    # Flag de ausência do consumo de álcool, replicando o notebook.
+    if 'alcohol_consumption' in patient_df:
+        patient_df['alcohol_missing'] = patient_df['alcohol_consumption'].isnull().astype(int)
+    else:
+        patient_df['alcohol_missing'] = 0
+
     for col, encoder in label_encoders.items():
         if col in patient_df.columns:
             # Safely transform data, handling unseen labels
@@ -158,24 +161,26 @@ with main_tabs[0]:
 
     with col2:
         if st.button('**🩺 Analisar Risco Cardíaco**', use_container_width=True):
-            with st.spinner('Avaliando dados e calculando o risco...'):
-                resultado = predict_heart_attack_risk(patient_data, model, scaler, label_encoders, feature_names)
-            
-            st.subheader('Resultado da Análise de Risco')
-            
-            if resultado['prediction'] == 1:
-                st.error(f"**Classificação: {resultado['risk_label']}**", icon="💔")
+            if None in (model, scaler, label_encoders, feature_names):
+                st.error("⚠️ Artefatos não carregados. Treine o modelo antes de realizar predições.")
             else:
-                st.success(f"**Classificação: {resultado['risk_label']}**", icon="❤️")
-            
-            prob_df = pd.DataFrame({
-                'Categoria': ['Risco de Ataque Cardíaco', 'Sem Risco Iminente'],
-                'Probabilidade (%)': [resultado['probability_attack'], resultado['probability_no_attack']]
-            })
-            st.bar_chart(prob_df.set_index('Categoria'))
+                with st.spinner('Avaliando dados e calculando o risco...'):
+                    resultado = predict_heart_attack_risk(patient_data, model, scaler, label_encoders, feature_names)
+                st.subheader('Resultado da Análise de Risco')
 
-            st.info(f"**Probabilidade de TER um ataque cardíaco:** {resultado['probability_attack']:.2f}%")
-            st.info(f"**Probabilidade de NÃO ter um ataque cardíaco:** {resultado['probability_no_attack']:.2f}%")
+                if resultado['prediction'] == 1:
+                    st.error(f"**Classificação: {resultado['risk_label']}**", icon="💔")
+                else:
+                    st.success(f"**Classificação: {resultado['risk_label']}**", icon="❤️")
+
+                prob_df = pd.DataFrame({
+                    'Categoria': ['Risco de Ataque Cardíaco', 'Sem Risco Iminente'],
+                    'Probabilidade (%)': [resultado['probability_attack'], resultado['probability_no_attack']]
+                })
+                st.bar_chart(prob_df.set_index('Categoria'))
+
+                st.info(f"**Probabilidade de TER um ataque cardíaco:** {resultado['probability_attack']:.2f}%")
+                st.info(f"**Probabilidade de NÃO ter um ataque cardíaco:** {resultado['probability_no_attack']:.2f}%")
 
 with main_tabs[1]:
     st.header("Formulário de Cadastro de Paciente")

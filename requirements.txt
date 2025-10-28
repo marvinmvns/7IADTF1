@@ -2,3 +2,8 @@ streamlit
 pandas
 scikit-learn
 pyngrok
+numpy
+matplotlib
+seaborn
+shap
+tqdm

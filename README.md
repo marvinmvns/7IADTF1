@@ -1,309 +1,284 @@
-# TECH CHALLENGE — FASE 1  
+# 🩺 Sistema de Predição de Risco de Ataque Cardíaco
 
+Sistema inteligente de triagem para avaliação de risco de ataque cardíaco em pacientes indonésios, utilizando Machine Learning com Random Forest.
 
----
+## 📋 Sobre o Projeto
 
-## Descrição Geral
+Este projeto faz parte do curso de **FIAP - 7IADT** e implementa um sistema completo de predição de risco cardíaco com:
+- Interface web interativa para triagem de pacientes
+- Modelo de Machine Learning (Random Forest) com interpretabilidade SHAP
+- Sistema de cadastro de novos pacientes
+- Pipeline de retreinamento do modelo
+- Análise exploratória de dados completa
 
-O **Tech Challenge** é um projeto integrador que reúne os conhecimentos adquiridos em todas as disciplinas da fase.  
-A atividade é **obrigatória** e corresponde a **90% da nota** das disciplinas.  
-Deve ser desenvolvida **em grupo** e entregue dentro do **prazo estipulado**.
+### 🎯 Objetivos
+- Identificar pacientes com alto risco de ataque cardíaco
+- Fornecer ferramenta de triagem acessível para profissionais de saúde
+- Permitir análise e interpretação dos fatores de risco
 
----
+## 📊 Dataset
 
-## Desafio
+**Fonte:** [Heart Attack Prediction in Indonesia - Kaggle](https://www.kaggle.com/datasets/ankushpanday2/heart-attack-prediction-in-indonesia)
 
-Um **hospital universitário** busca implementar um **sistema inteligente de suporte ao diagnóstico**, com o objetivo de:  
-- Ajudar médicos e equipes clínicas na **análise inicial de exames**;  
-- Apoiar decisões médicas por meio de **processamento de dados médicos**;  
-- **Reduzir erros** e **otimizar o tempo** dos profissionais da saúde.  
+O dataset contém **28 features** incluindo:
+- **Demográficos:** idade, gênero, região, nível de renda
+- **Condições de saúde:** hipertensão, diabetes, obesidade, histórico familiar
+- **Estilo de vida:** tabagismo, álcool, atividade física, dieta, sono
+- **Exames laboratoriais:** pressão arterial, glicemia, colesterol, triglicerídeos, EKG
 
-Nesta primeira fase, o desafio é **criar a base do sistema de IA** utilizando **Machine Learning (ML)** para analisar resultados de exames automaticamente e destacar informações relevantes para o diagnóstico.
+## 🚀 Tecnologias Utilizadas
 
----
-
-## Objetivo
-
-Construir uma **solução inicial de IA** voltada ao **processamento de exames médicos e documentos clínicos**, aplicando fundamentos essenciais de:
-- **Inteligência Artificial (IA)**  
-- **Machine Learning (ML)**  
-- **Visão Computacional**
-
----
-
-## Entregas Técnicas
-
-### 1. Processamento de Dados Médicos
-
-#### Classificação de Exames com Machine Learning
-- Escolher uma **base de dados tabular**;  
-- Criar um **modelo de diagnóstico binário** (“a pessoa tem ou não uma doença”) utilizando algoritmos de aprendizado de máquina.
-
-#### Extra (Opcional)
-- Implementar diagnóstico com **dados de imagem** (ex: radiografias, tomografias);  
-- Utilizar **redes neurais convolucionais (CNNs)**;  
-- Esta etapa **não é obrigatória**, mas pode **aumentar a nota** final.
+- **Python 3.8+**
+- **Streamlit** - Interface web interativa
+- **scikit-learn** - Machine Learning (Random Forest)
+- **pandas** - Manipulação de dados
+- **numpy** - Operações numéricas
+- **matplotlib & seaborn** - Visualização de dados
+- **SHAP** - Interpretabilidade do modelo
+- **Jupyter Notebook** - Análise exploratória
 
 ---
 
-### 2. Dados e Modelos
+## 💻 Como Rodar no VS Code (Local)
 
-#### Escolha de Datasets
-- Selecionar um ou mais **datasets médicos públicos**;  
-- **Discutir o problema** a ser resolvido.
+### Pré-requisitos
+- Python 3.8 ou superior instalado
+- Git instalado
+- VS Code (recomendado)
 
-#### Exploração de Dados
-- Carregar a base de dados e explorar suas características;  
-- Analisar **estatísticas descritivas** e **distribuições**;  
-- Discutir os **resultados obtidos**.
+### Passo 1: Clonar o Repositório
+```bash
+git clone <URL_DO_SEU_REPOSITORIO>
+cd 7IADT
+```
 
-#### Pré-processamento de Dados
-- Realizar **limpeza dos dados**, tratando valores ausentes e inconsistentes;  
-- Construir um **pipeline de pré-processamento** em **Python**:
-  - Converter variáveis **categóricas e numéricas** em formatos adequados;
-  - Realizar **análise de correlação** entre as variáveis.
+### Passo 2: Criar Ambiente Virtual (Recomendado)
+```bash
+# No Linux/Mac
+python3 -m venv venv
+source venv/bin/activate
 
----
+# No Windows
+python -m venv venv
+venv\Scripts\activate
+```
 
-### 3. Modelagem
+### Passo 3: Instalar Dependências
+```bash
+pip install -r requirements.txt
+```
 
-#### Criação dos Modelos
-- Desenvolver **modelos preditivos de classificação** com **duas ou mais técnicas**, como:
-  - Regressão Logística  
-  - Árvore de Decisão  
-  - KNN  
-  - (ou outras de sua escolha)  
-- Garantir **divisão clara** entre **treino**, **validação** e **teste**.
+### Passo 4: Criar Pasta de Artefatos
+```bash
+mkdir -p artifacts
+```
 
----
+### Passo 5: Treinar o Modelo (Primeira Vez)
+```bash
+python3 train_model.py
+```
 
-### 4. Treinamento e Avaliação
+Isso irá gerar os seguintes artefatos em `artifacts/`:
+- `best_model.pkl` - Modelo treinado
+- `scaler.pkl` - Scaler para normalização
+- `label_encoders.pkl` - Encoders para variáveis categóricas
+- `feature_names.pkl` - Nomes das features
 
-#### Treinamento
-- Treinar o modelo com o **conjunto de treinamento**.
+### Passo 6: Executar a Aplicação Streamlit
+```bash
+streamlit run app.py
+```
 
-#### Avaliação
-- Avaliar o modelo com o **conjunto de teste**, utilizando métricas como:
-  - **Accuracy**
-  - **Recall**
-  - **F1-Score**
+A aplicação abrirá automaticamente em `http://localhost:8501`
 
-- Discutir a **escolha da métrica** considerando o contexto clínico;  
-- Interpretar os resultados utilizando técnicas como:
-  - **Feature Importance**
-  - **SHAP Values**
-
-#### Reflexão
-- Discutir criticamente os resultados:  
-  - O modelo pode ser aplicado na prática?  
-  - Como ele auxiliaria o médico?  
-  - Lembrar que **a decisão final é sempre médica**.
-
----
-
-## Exemplos de Fontes de Dados
-
-### Tarefas Principais
-- **Diagnóstico de Câncer de Mama (maligno ou benigno):**  
-  [Breast Cancer Wisconsin Dataset](https://www.kaggle.com/datasets/uciml/breast-cancer-wisconsin-data/data)
-- **Diagnóstico de Diabetes:**  
-  [Diabetes Dataset](https://www.kaggle.com/datasets/mathchi/diabetes-data-set/data)
-- Ou outro **dataset médico público** de sua escolha.
-
-### Tarefas Extras — Visão Computacional
-- **Detecção de Pneumonia em Radiografias:**  
-  [Chest X-Ray Pneumonia Dataset](https://www.kaggle.com/datasets/paultimothymooney/chest-xray-pneumonia)
-- **Detecção de Câncer de Mama (imagens):**  
-  [CBIS-DDSM Dataset](https://www.kaggle.com/datasets/awsaf49/cbis-ddsm-breastcancer-image-dataset/data)
+### 📝 Notas para VS Code
+- Instale a extensão **Python** da Microsoft
+- Instale a extensão **Jupyter** para trabalhar com notebooks
+- Configure o interpretador Python para usar o ambiente virtual criado
 
 ---
 
-## Código e Organização
+## ☁️ Como Rodar no Google Colab
 
-- Projeto em **Python**, **estruturado e documentado**;  
-- Utilizar **Jupyter Notebook** ou **scripts Python** para demonstração dos resultados.
+### Opção 1: Apenas Análise Exploratória e Treinamento
 
----
+1. **Acesse o Google Colab:** [https://colab.research.google.com/](https://colab.research.google.com/)
 
-## Entregáveis da Fase 1
+2. **Faça upload do notebook:**
+   - Clique em "Arquivo" → "Fazer upload do notebook"
+   - Selecione o arquivo `ataquecardiaco.ipynb`
 
-### Arquivo PDF (com link para o repositório Git)
-Deve conter:
-- Código-fonte completo;  
-- `Dockerfile` e `README.md` com instruções de execução;  
-- Dataset (ou link para download);  
-- Resultados obtidos (**prints, gráficos e análises**);  
-- **Relatório técnico** descrevendo:
-  - Estratégias de pré-processamento;  
-  - Modelos utilizados e justificativa;  
-  - Resultados e interpretação.
+3. **Faça upload do dataset:**
+   - Crie uma pasta `dataset` no Colab
+   - Faça upload do arquivo `heart_attack_prediction_indonesia.csv`
 
----
+4. **Execute as células sequencialmente**
 
-### Vídeo de Demonstração
-- Upload no **YouTube** ou **Vimeo** (configuração **público** ou **não listado**);  
-- **Duração máxima:** 15 minutos;  
-- Deve apresentar:
-  - Execução do sistema;  
-  - Breve explicação do **fluxo de funcionamento**.
+### Opção 2: Executar a Aplicação Streamlit no Colab
 
----
+1. **Crie um novo notebook no Colab**
 
-## Checklist Final
+2. **Clone o repositório:**
+```python
+!git clone <URL_DO_SEU_REPOSITORIO>
+%cd 7IADT
+```
 
-| Atividade | Status |
-|------------|--------|
-| Escolha do dataset médico | ☐ |
-| Exploração e análise de dados | ☐ |
-| Pré-processamento e pipeline | ☐ |
-| Modelagem com ≥ 2 técnicas | ☐ |
-| Treinamento e avaliação | ☐ |
-| Interpretação e discussão | ☐ |
-| Entrega no GitHub (PDF, código, Docker, README) | ☐ |
-| Vídeo demonstrativo (YouTube/Vimeo) | ☐ |
+3. **Instale as dependências:**
+```python
+!pip install -q streamlit pandas scikit-learn numpy matplotlib seaborn shap tqdm pyngrok
+```
 
+4. **Configure o ngrok para expor o Streamlit:**
+```python
+!pip install -q pyngrok
 
+from pyngrok import ngrok
 
-# Projeto de Previsão de Risco de Ataque Cardíaco
+# Configure seu token do ngrok (obtenha em https://dashboard.ngrok.com/get-started/your-authtoken)
+!ngrok authtoken SEU_TOKEN_AQUI
+```
 
-Este projeto é uma aplicação web interativa construída com Streamlit para prever o risco de ataque cardíaco com base em dados do paciente. Ele utiliza um modelo de Machine Learning (Random Forest) treinado em um conjunto de dados de saúde da Indonésia.
+5. **Treine o modelo (se necessário):**
+```python
+!python3 train_model.py
+```
 
-## Como Executar o Projeto
+6. **Execute o Streamlit com ngrok:**
+```python
+# Em uma célula separada
+!streamlit run app.py &>/dev/null &
 
-Existem duas maneiras principais de executar este projeto: localmente usando o Visual Studio Code ou na nuvem usando o Google Colab.
+# Em outra célula
+public_url = ngrok.connect(8501)
+print(f"Acesse a aplicação em: {public_url}")
+```
 
----
-
-### 1. Executando Localmente com VS Code
-
-Esta abordagem é recomendada para desenvolvimento e para ter controle total sobre o ambiente.
-
-#### Pré-requisitos
-
-*   **Python 3.8+:** Certifique-se de ter o Python instalado. Você pode baixá-lo em [python.org](https://www.python.org/downloads/).
-*   **Visual Studio Code:** Um editor de código-fonte gratuito e poderoso. Baixe em [code.visualstudio.com](https://code.visualstudio.com/).
-*   **Git:** Para clonar o repositório. Baixe em [git-scm.com](https://git-scm.com/downloads).
-
-#### Passos para Configuração
-
-1.  **Clonar o Repositório:**
-    Abra um terminal e clone o repositório para a sua máquina local.
-
-    ```bash
-    git clone <URL_DO_REPOSITORIO>
-    cd 7IADTF1
-    ```
-
-2.  **Abrir no VS Code:**
-    Abra a pasta do projeto no VS Code.
-
-    ```bash
-    code .
-    ```
-
-3.  **Criar e Ativar um Ambiente Virtual:**
-    É uma boa prática usar um ambiente virtual para isolar as dependências do projeto. Abra o terminal integrado do VS Code (`Ctrl+` ou `View > Terminal`).
-
-    ```bash
-    # Criar o ambiente virtual
-    python -m venv .venv
-
-    # Ativar o ambiente virtual
-    # No Windows:
-    .venv\Scripts\activate
-    # No macOS/Linux:
-    source .venv/bin/activate
-    ```
-
-4.  **Instalar as Dependências:**
-    Com o ambiente virtual ativado, instale as bibliotecas Python necessárias a partir do arquivo `requirements.txt`.
-
-    ```bash
-    pip install -r requirements.txt
-    ```
-
-5.  **Executar a Aplicação Streamlit:**
-    Após a instalação, inicie a aplicação.
-
-    ```bash
-    streamlit run app.py
-    ```
-
-    O VS Code pode perguntar se você deseja iniciar a aplicação. A aplicação será aberta automaticamente no seu navegador padrão.
+### 📌 Dicas para Google Colab
+- O Colab tem limite de tempo de execução (pode desconectar após inatividade)
+- Os arquivos são temporários - faça backup dos artefatos gerados
+- Para usar GPU: "Ambiente de execução" → "Alterar tipo de ambiente" → GPU
+- O ngrok é necessário pois o Colab não expõe portas diretamente
 
 ---
 
-### 2. Executando no Google Colab
+## 📁 Estrutura do Projeto
 
-Esta abordagem é ideal para quem não deseja instalar nada localmente e quer executar o projeto em um ambiente de notebook baseado em nuvem.
+```
+7IADT/
+├── app.py                          # Aplicação Streamlit principal
+├── train_model.py                  # Script de treinamento do modelo
+├── ataquecardiaco.ipynb           # Notebook com análise exploratória e SHAP
+├── requirements.txt                # Dependências do projeto
+├── CLAUDE.md                       # Documentação para Claude Code
+├── README.md                       # Este arquivo
+├── TODO.md                         # Checklist do projeto
+│
+├── dataset/
+│   └── heart_attack_prediction_indonesia.csv  # Dataset principal
+│
+└── artifacts/                      # Artefatos gerados (após treinamento)
+    ├── best_model.pkl
+    ├── scaler.pkl
+    ├── label_encoders.pkl
+    └── feature_names.pkl
+```
 
-#### Pré-requisitos
+---
 
-*   Uma conta Google.
+## 🎮 Como Usar a Aplicação
 
-#### Passos para Configuração
+### 1️⃣ Aba: Triagem de Risco
+- Preencha os dados do paciente nos formulários organizados por categoria
+- Clique em "Analisar Risco Cardíaco"
+- Visualize a classificação de risco e probabilidades
 
-1.  **Fazer o Upload dos Arquivos para o Google Drive:**
-    *   Crie uma pasta no seu Google Drive (ex: `7IADTF1`).
-    *   Faça o upload de todos os arquivos e pastas do projeto para esta nova pasta no Drive, mantendo a estrutura de diretórios original (`app.py`, `train_model.py`, `dataset/`, etc.).
+### 2️⃣ Aba: Cadastrar Novo Paciente
+- Preencha todos os dados do paciente incluindo o desfecho (se teve ataque cardíaco)
+- Clique em "Salvar Dados do Novo Paciente"
+- Os dados serão adicionados ao dataset principal
 
-2.  **Criar um Novo Notebook no Google Colab:**
-    *   Acesse [colab.research.google.com](https://colab.research.google.com).
-    *   Clique em `File > New notebook`.
+### 3️⃣ Aba: Treinar Modelo
+- Clique em "Iniciar Treinamento do Modelo"
+- Aguarde o processo de treinamento
+- O modelo será retreinado com todos os dados disponíveis
+- A aplicação recarregará automaticamente com o novo modelo
 
-3.  **Montar o Google Drive:**
-    Execute a célula a seguir no notebook para dar ao Colab acesso aos seus arquivos no Google Drive.
+---
 
-    ```python
-    from google.colab import drive
-    drive.mount('/content/drive')
-    ```
+## 📊 Funcionalidades
 
-4.  **Navegar para a Pasta do Projeto:**
-    Use o comando `cd` para navegar até a pasta onde você fez o upload dos arquivos.
+✅ **Predição de Risco em Tempo Real**
+- Classificação binária: Alto Risco / Baixo Risco
+- Probabilidades percentuais para cada classe
+- Visualização gráfica dos resultados
 
-    ```python
-    # Altere o caminho se você usou um nome de pasta diferente
-    %cd /content/drive/MyDrive/7IADTF1
-    ```
+✅ **Gerenciamento de Dados**
+- Cadastro de novos pacientes
+- Dados salvos diretamente no CSV
+- Preservação da estrutura do dataset
 
-5.  **Instalar as Dependências:**
-    Instale as bibliotecas necessárias no ambiente do Colab a partir do arquivo `requirements.txt`.
+✅ **Pipeline ML Completo**
+- Pré-processamento automático
+- Encoding de variáveis categóricas
+- Normalização de features
+- Modelo Random Forest otimizado
 
-    ```python
-    !pip install -r requirements.txt
-    ```
+✅ **Retreinamento do Modelo**
+- Treinamento via interface ou linha de comando
+- Atualização automática dos artefatos
+- Logs de progresso em tempo real
 
-6.  **Executar a Aplicação com `pyngrok`:**
-    O Google Colab não expõe portas diretamente. Usaremos o `pyngrok` para criar um túnel público para a nossa aplicação Streamlit.
+✅ **Interpretabilidade (Notebook)**
+- Análise SHAP para explicabilidade
+- Importância de features
+- Visualizações detalhadas
 
-    *   **Treinar o modelo (se necessário):**
-        Se os artefatos do modelo (`.pkl`) não estiverem presentes, treine o modelo primeiro.
+---
 
-        ```python
-        !python train_model.py
-        ```
+## 🔬 Metodologia
 
-    *   **Executar a aplicação:**
-        Crie um arquivo chamado `run_streamlit.py` (ou adicione este código a uma célula do notebook) com o seguinte conteúdo:
+### Pré-processamento
+1. Codificação de variáveis categóricas (LabelEncoder)
+2. Divisão treino-teste (70-30) com estratificação
+3. Normalização com StandardScaler
 
-        ```python
-        from pyngrok import ngrok
-        import subprocess
+### Modelagem
+- **Algoritmo:** Random Forest Classifier
+- **Parâmetros:** 100 estimadores, random_state=42
+- **Métricas:** Acurácia, Precisão, Recall, F1-Score, AUC-ROC
 
-        # Inicia o túnel ngrok na porta 8501 (padrão do Streamlit)
-        public_url = ngrok.connect(8501)
-        print(f"URL pública do Streamlit: {public_url}")
+### Interpretabilidade
+- **SHAP (SHapley Additive exPlanations)** para entender as contribuições de cada feature
 
-        # Inicia a aplicação Streamlit em segundo plano
-        process = subprocess.Popen(['streamlit', 'run', 'app.py'])
-        process.wait()
-        ```
+---
 
-    Execute este script/célula. A saída fornecerá uma URL pública (geralmente terminando com `.ngrok.io`). Clique nessa URL para interagir com sua aplicação Streamlit diretamente do seu navegador.
+## ⚠️ Aviso Legal
 
-## Funcionalidades da Aplicação
+**Esta é uma ferramenta de triagem baseada em Machine Learning e NÃO substitui consulta, diagnóstico ou tratamento médico profissional.**
 
-*   **Triagem de Risco:** Preencha um formulário com os dados do paciente para obter uma previsão de risco de ataque cardíaco.
-*   **Cadastrar Novo Paciente:** Adicione novos dados de pacientes ao dataset, que podem ser usados para retreinar o modelo.
-*   **Treinar Modelo:** Inicie um novo processo de treinamento do modelo com os dados mais recentes.# 7IADTF1
+Sempre consulte um médico qualificado para questões de saúde. Esta ferramenta foi desenvolvida para fins educacionais e de pesquisa.
+
+---
+
+## 👥 Autores
+
+Projeto desenvolvido para o curso **FIAP - 7IADT**
+
+---
+
+## 📄 Licença
+
+Este projeto é parte de um trabalho acadêmico da FIAP.
+
+---
+
+
+## 🎓 Referências
+
+- [Kaggle Dataset](https://www.kaggle.com/datasets/ankushpanday2/heart-attack-prediction-in-indonesia)
+- [Streamlit Documentation](https://docs.streamlit.io/)
+- [scikit-learn Documentation](https://scikit-learn.org/)
+- [SHAP Documentation](https://shap.readthedocs.io/)
+
+---
