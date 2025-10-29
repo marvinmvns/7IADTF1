@@ -98,6 +98,30 @@ A aplicação abrirá automaticamente em `http://localhost:8501`
 
 ---
 
+## 🐳 Como Rodar com Docker
+
+### Passo 1: Build da imagem
+```bash
+docker build -t triagem-cardio .
+```
+
+### Passo 2: (Opcional) Treinar o modelo dentro do contêiner
+Monte a pasta `artifacts/` para persistir os modelos e execute o script de treino.
+```bash
+docker run --rm -v "$(pwd)/artifacts:/app/artifacts" triagem-cardio python train_model.py
+```
+
+### Passo 3: Subir a aplicação Streamlit
+```bash
+docker run --rm -p 8501:8501 -v "$(pwd)/artifacts:/app/artifacts" triagem-cardio
+```
+
+A aplicação ficará disponível em `http://localhost:8501`.
+
+> 💡 No Windows PowerShell, substitua `$(pwd)` por `${PWD}`. Em shells baseados em CMD, utilize o caminho completo, como `C:\caminho\para\7IADT\artifacts`.
+
+---
+
 ## ☁️ Como Rodar no Google Colab
 
 ### Opção 1: Apenas Análise Exploratória e Treinamento
