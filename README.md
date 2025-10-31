@@ -48,7 +48,7 @@ O dataset contém **28 features** incluindo:
 
 ### Passo 1: Clonar o Repositório
 ```bash
-git clone https://github.com/marvinmvns/7IADTF
+git clone [https://github.com/marvinmvns/7IADTF](https://github.com/marvinmvns/7IADTF1.git)
 cd 7IADT
 ```
 
@@ -144,7 +144,7 @@ A aplicação ficará disponível em `http://localhost:8501`.
 
 2. **Clone o repositório:**
 ```python
-!git clone https://github.com/marvinmvns/7IADTF
+!git clone [https://github.com/marvinmvns/7IADTF](https://github.com/marvinmvns/7IADTF1.git)
 %cd 7IADT
 ```
 
@@ -285,19 +285,6 @@ Sempre consulte um médico qualificado para questões de saúde. Esta ferramenta
 
 ---
 
-## 👥 Autores
-
-Projeto desenvolvido para o curso **FIAP - 7IADT**
-
----
-
-## 📄 Licença
-
-Este projeto é parte de um trabalho acadêmico da FIAP.
-
----
-
-
 ## 🎓 Referências
 
 - [Kaggle Dataset](https://www.kaggle.com/datasets/ankushpanday2/heart-attack-prediction-in-indonesia)
@@ -305,8 +292,3 @@ Este projeto é parte de um trabalho acadêmico da FIAP.
 - [scikit-learn Documentation](https://scikit-learn.org/)
 - [SHAP Documentation](https://shap.readthedocs.io/)
 
----
-# 7iadtf2tst
-# 7iadtf2tst
-# 7iadtf2tst
-# 7iadtf2tst
