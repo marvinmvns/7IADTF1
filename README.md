@@ -2,6 +2,8 @@
 
 Sistema inteligente de triagem para avaliação de risco de ataque cardíaco em pacientes indonésios, utilizando Machine Learning com Random Forest.
 
+https://www.youtube.com/watch?v=c_6bLf_XJ0o
+
 # 🔥 Otimização na V2
 Com o apoio do copilot meu modelo deu um salto consideravel na redução de falsos negativos, com implementação de:
 - GridSearch com class_weight='balanced' 
