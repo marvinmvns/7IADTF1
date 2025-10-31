@@ -48,7 +48,7 @@ O dataset contém **28 features** incluindo:
 
 ### Passo 1: Clonar o Repositório
 ```bash
-git clone [https://github.com/marvinmvns/7IADTF](https://github.com/marvinmvns/7IADTF1.git)
+git clone https://github.com/marvinmvns/7IADTF1.git
 cd 7IADT
 ```
 
@@ -144,7 +144,7 @@ A aplicação ficará disponível em `http://localhost:8501`.
 
 2. **Clone o repositório:**
 ```python
-!git clone [https://github.com/marvinmvns/7IADTF](https://github.com/marvinmvns/7IADTF1.git)
+!git clonehttps://github.com/marvinmvns/7IADTF1.git
 %cd 7IADT
 ```
 
