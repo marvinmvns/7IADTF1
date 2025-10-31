@@ -4,12 +4,12 @@ Sistema inteligente de triagem para avaliação de risco de ataque cardíaco em 
 
 # 🔥 Otimização na V2
 Com o apoio do copilot meu modelo deu um salto consideravel na redução de falsos negativos, com implementação de:
-✓ GridSearch com class_weight='balanced' 
-✓ OneHotEncoder (representação correta de categóricas)
-✓ Hiperparâmetros otimizados (n_estimators=200, max_depth=10)
-✓ ColumnTransformer + Pipeline (prevenção de data leakage)
-Apesar disso, existe umn tradeoff na perda de precisão, para casos médicos ainda vale! 
-Porém na apresentação do video foi feita sobre a V1.
+-✓ GridSearch com class_weight='balanced' 
+-✓ OneHotEncoder (representação correta de categóricas)
+-✓ Hiperparâmetros otimizados (n_estimators=200, max_depth=10)
+-✓ ColumnTransformer + Pipeline (prevenção de data leakage)
+-Apesar disso, existe umn tradeoff na perda de precisão, para casos médicos ainda vale! 
+-Porém na apresentação do video foi feita sobre a V1.
 
 ## 📋 Sobre o Projeto
 
